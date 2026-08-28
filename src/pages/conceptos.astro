@@ -1,0 +1,467 @@
+---
+import { Image } from 'astro:assets';
+import Logo from '../components/Logo.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import corona from '../assets/catalog/corona-floral.webp';
+import cubreUrna from '../assets/catalog/cubre-urna-premium.webp';
+import canastillo from '../assets/catalog/canastillo-clasico.webp';
+---
+
+<BaseLayout
+  title="Conceptos de portada | Floristería Conce"
+  description="Tres propuestas visuales para la portada del catálogo de condolencias de Floristería Conce."
+  bodyClass="concepts-page"
+  noindex
+>
+  <header class="concept-nav">
+    <a href="/" class="concept-nav__brand">Floristería Conce</a>
+    <nav aria-label="Conceptos de portada">
+      <a href="#sello">A · Sello</a>
+      <a href="#diptico">B · Díptico</a>
+      <a href="#umbral">C · Umbral</a>
+    </nav>
+    <a href="/" class="concept-nav__back">Ver página completa ↗</a>
+  </header>
+
+  <main id="contenido">
+    <section class="concept concept--seal" id="sello" aria-labelledby="seal-title">
+      <div class="concept-tag"><span>A</span> Sello botánico</div>
+      <div class="seal__image seal__image--left" aria-hidden="true">
+        <Image src={canastillo} alt="" widths={[300, 460]} sizes="22vw" />
+      </div>
+      <div class="seal__center">
+        <Logo class="seal__logo" />
+        <p>Catálogo de condolencias · Concepción</p>
+        <h1 id="seal-title">Flores para acompañar<br /><em>con respeto.</em></h1>
+        <a href="/#catalogo">Conocer el catálogo <span>↘</span></a>
+      </div>
+      <div class="seal__image seal__image--right" aria-hidden="true">
+        <Image src={corona} alt="" widths={[300, 460]} sizes="22vw" />
+      </div>
+      <div class="seal__rings" aria-hidden="true"></div>
+    </section>
+
+    <section class="concept concept--split" id="diptico" aria-labelledby="split-title">
+      <div class="concept-tag concept-tag--light"><span>B</span> Díptico editorial</div>
+      <div class="split__copy">
+        <Logo class="split__logo" />
+        <p>Catálogo de condolencias · Concepción</p>
+        <h1 id="split-title">Flores para<br />acompañar con <em>respeto.</em></h1>
+        <p class="split__lead">Una selección para expresar cercanía, cariño y presencia en momentos delicados.</p>
+        <a href="/#catalogo">Explorar arreglos <span>↘</span></a>
+      </div>
+      <div class="split__visual">
+        <Image
+          src={cubreUrna}
+          alt="Cubre urna de rosas y lirios blancos"
+          widths={[600, 900, 1200]}
+          sizes="50vw"
+        />
+        <span>FLORISTERÍA CONCE · CONDOLENCIAS</span>
+      </div>
+    </section>
+
+    <section class="concept concept--threshold" id="umbral" aria-labelledby="threshold-title">
+      <div class="concept-tag concept-tag--inverse"><span>C</span> Umbral solemne</div>
+      <div class="threshold__photo">
+        <Image
+          src={corona}
+          alt="Corona floral blanca"
+          widths={[560, 840, 1100]}
+          sizes="45vw"
+        />
+      </div>
+      <div class="threshold__copy">
+        <Logo class="threshold__logo" />
+        <p>Condolencias · Concepción</p>
+        <h1 id="threshold-title">La belleza de<br /><em>estar presentes.</em></h1>
+        <div>
+          <p>Arreglos florales preparados para acompañar momentos que merecen respeto y cuidado.</p>
+          <a href="/#catalogo">Ver colección <span>→</span></a>
+        </div>
+      </div>
+      <div class="threshold__ring" aria-hidden="true"></div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  :global(.concepts-page) {
+    background: #111512;
+  }
+
+  .concept-nav {
+    position: fixed;
+    z-index: 100;
+    top: 1rem;
+    left: 50%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: min(74rem, calc(100vw - 2rem));
+    min-height: 3.4rem;
+    padding-inline: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 10rem;
+    background: rgba(20, 27, 23, 0.82);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    backdrop-filter: blur(1rem);
+    transform: translateX(-50%);
+  }
+
+  .concept-nav nav {
+    display: flex;
+    gap: 1.6rem;
+  }
+
+  .concept-nav__back {
+    justify-self: end;
+  }
+
+  .concept {
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
+    scroll-margin-top: 0;
+  }
+
+  .concept-tag {
+    position: absolute;
+    z-index: 8;
+    top: 6.4rem;
+    left: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: #263b31;
+    font-size: 0.61rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .concept-tag span {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+  }
+
+  .concept-tag--light {
+    color: #17251f;
+  }
+
+  .concept-tag--inverse {
+    color: #dfe6dc;
+  }
+
+  .concept--seal {
+    display: grid;
+    place-items: center;
+    background: #f4f1e9;
+    color: #171a17;
+  }
+
+  .seal__center {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .seal__logo {
+    width: 9rem;
+    height: 6rem;
+    overflow: hidden;
+  }
+
+  .seal__logo :global(img) {
+    transform: translateY(-1rem);
+  }
+
+  .seal__center > p,
+  .split__copy > p:first-of-type,
+  .threshold__copy > p {
+    margin-top: 1rem;
+    font-size: 0.62rem;
+    font-weight: 750;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .seal__center h1 {
+    margin-top: 1.8rem;
+    font-size: clamp(4.5rem, 8vw, 8.5rem);
+    letter-spacing: -0.055em;
+  }
+
+  .seal__center h1 em {
+    color: #456453;
+  }
+
+  .seal__center a,
+  .split__copy a,
+  .threshold__copy a {
+    display: inline-flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2.4rem;
+    padding: 1rem 1.3rem;
+    border: 1px solid currentColor;
+    font-size: 0.65rem;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .seal__image {
+    position: absolute;
+    z-index: 2;
+    width: min(21vw, 20rem);
+    overflow: hidden;
+  }
+
+  .seal__image img {
+    width: 100%;
+    aspect-ratio: 0.72;
+    object-fit: cover;
+    filter: grayscale(0.25) saturate(0.62);
+  }
+
+  .seal__image--left {
+    bottom: -3rem;
+    left: 4vw;
+    transform: rotate(-4deg);
+  }
+
+  .seal__image--right {
+    top: 11rem;
+    right: 4vw;
+    transform: rotate(4deg);
+  }
+
+  .seal__rings {
+    position: absolute;
+    width: min(70vw, 60rem);
+    aspect-ratio: 1;
+    border: 1px solid rgba(38, 59, 49, 0.17);
+    border-radius: 50%;
+  }
+
+  .seal__rings::before,
+  .seal__rings::after {
+    position: absolute;
+    border: 1px solid rgba(38, 59, 49, 0.1);
+    border-radius: 50%;
+    content: '';
+  }
+
+  .seal__rings::before { inset: 1rem; }
+  .seal__rings::after { inset: 2.2rem; }
+
+  .concept--split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #e0c5c5;
+    color: #171a17;
+  }
+
+  .split__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 8rem clamp(2rem, 6vw, 7rem) 4rem;
+  }
+
+  .split__logo {
+    width: 8rem;
+    height: 5.2rem;
+    overflow: hidden;
+  }
+
+  .split__logo :global(img) { transform: translateY(-0.9rem); }
+
+  .split__copy h1 {
+    margin-top: 2.2rem;
+    font-size: clamp(4.4rem, 7vw, 8rem);
+    letter-spacing: -0.055em;
+  }
+
+  .split__copy h1 em { color: #365442; }
+
+  .split__lead {
+    max-width: 32rem;
+    margin-top: 2rem;
+    color: rgba(23, 26, 23, 0.65);
+  }
+
+  .split__visual {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .split__visual::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(18, 28, 23, 0.35));
+    content: '';
+  }
+
+  .split__visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.68) contrast(0.96);
+  }
+
+  .split__visual span {
+    position: absolute;
+    z-index: 3;
+    right: 2rem;
+    bottom: 2rem;
+    color: white;
+    font-size: 0.58rem;
+    font-weight: 750;
+    letter-spacing: 0.2em;
+  }
+
+  .concept--threshold {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    padding: 8rem 7vw 4rem;
+    background: #17251f;
+    color: #f4f1e9;
+  }
+
+  .threshold__photo {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    height: min(72svh, 48rem);
+    overflow: hidden;
+  }
+
+  .threshold__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 45%;
+    filter: saturate(0.4) contrast(1.06) brightness(0.84);
+  }
+
+  .threshold__copy {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: clamp(2rem, 7vw, 8rem);
+  }
+
+  .threshold__logo {
+    width: 8rem;
+    height: 5.2rem;
+    overflow: hidden;
+    color: #f4f1e9;
+  }
+
+  .threshold__logo :global(img) { transform: translateY(-0.9rem); }
+
+  .threshold__copy > p { color: #a8b9a5; }
+
+  .threshold__copy h1 {
+    margin-top: 2.1rem;
+    font-size: clamp(4.4rem, 7vw, 8rem);
+    letter-spacing: -0.055em;
+  }
+
+  .threshold__copy h1 em { color: #dec2c2; }
+
+  .threshold__copy > div {
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .threshold__copy > div p {
+    max-width: 26rem;
+    color: rgba(244, 241, 233, 0.64);
+  }
+
+  .threshold__copy a {
+    flex: 0 0 auto;
+    margin-top: 0;
+  }
+
+  .threshold__ring {
+    position: absolute;
+    right: -16rem;
+    bottom: -21rem;
+    width: 44rem;
+    height: 44rem;
+    border: 1px solid rgba(222, 194, 194, 0.18);
+    border-radius: 50%;
+  }
+
+  @media (max-width: 800px) {
+    .concept-nav {
+      grid-template-columns: 1fr auto;
+    }
+
+    .concept-nav nav { display: none; }
+
+    .concept-tag {
+      top: 5.7rem;
+      left: 1.2rem;
+    }
+
+    .concept--seal {
+      min-height: 52rem;
+      padding-inline: 1rem;
+    }
+
+    .seal__center h1 {
+      font-size: clamp(3.6rem, 15vw, 5.4rem);
+    }
+
+    .seal__image { width: 8rem; }
+    .seal__image--left { bottom: -2rem; left: -1rem; }
+    .seal__image--right { top: 8rem; right: -1rem; }
+    .seal__rings { width: 42rem; }
+
+    .concept--split,
+    .concept--threshold {
+      display: flex;
+      flex-direction: column;
+      min-height: auto;
+    }
+
+    .split__copy {
+      min-height: 46rem;
+      padding: 9rem 1.2rem 4rem;
+    }
+
+    .split__copy h1,
+    .threshold__copy h1 {
+      font-size: clamp(3.8rem, 15vw, 5.7rem);
+    }
+
+    .split__visual { height: 68svh; }
+
+    .concept--threshold { padding: 8rem 1rem 5rem; }
+    .threshold__photo { width: 85%; height: 32rem; }
+    .threshold__copy { padding: 3rem 0 0; }
+    .threshold__copy > div { display: block; }
+    .threshold__copy a { margin-top: 2rem; }
+  }
+</style>

@@ -1,0 +1,170 @@
+---
+import { Image } from 'astro:assets';
+import Logo from '../components/Logo.astro';
+import ProductCard from '../components/ProductCard.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { catalog, categoryLabels, categoryOrder } from '../data/catalog';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import heroImage from '../assets/hero/condolence-hero-premium.png';
+import wordmark from '../assets/brand/letras-logo.png';
+
+const title = 'Catálogo de condolencias | Floristería Conce';
+const description = 'Arreglos florales de condolencias en Concepción. Revisa nuestro catálogo de canastillos, cubre urnas, conjuntos y coronas florales.';
+---
+
+<BaseLayout title={title} description={description} ogImage={heroImage.src}>
+  <div data-page="home">
+    <header class="site-header">
+      <a class="site-header__brand" href="#inicio" aria-label="Ir al inicio">
+        <Logo decorative />
+        <Image
+          class="site-header__wordmark"
+          src={wordmark}
+          alt=""
+          widths={[220, 432]}
+          sizes="(max-width: 799px) 120px, 180px"
+          loading="eager"
+          decoding="async"
+        />
+      </a>
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#como-consultar">Cómo consultar</a>
+      </nav>
+      <a class="site-header__catalog-link" href="#catalogo">
+        Ver catálogo
+        <span aria-hidden="true">↓</span>
+      </a>
+    </header>
+
+    <main id="contenido">
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero__background" aria-hidden="true">
+          <Image
+            class="hero__background-image"
+            src={heroImage}
+            alt=""
+            widths={[900, 1200, 1600]}
+            sizes="100vw"
+            loading="eager"
+            decoding="sync"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero__orb hero__orb--one" aria-hidden="true"></div>
+        <div class="hero__orb hero__orb--two" aria-hidden="true"></div>
+        <div class="hero__content shell">
+          <div class="hero__copy">
+            <p class="eyebrow" data-hero-item>Catálogo de condolencias · Concepción</p>
+            <h1 id="hero-title" data-hero-item>
+              Flores para<br />acompañar con <em>respeto.</em>
+            </h1>
+            <p class="hero__lead" data-hero-item>
+              Una selección de arreglos florales para expresar cercanía, cariño y presencia en momentos delicados.
+            </p>
+            <div class="hero__actions" data-hero-item>
+              <a class="button button--dark" href="#catalogo">
+                Explorar arreglos
+                <span aria-hidden="true">↘</span>
+              </a>
+              <p>Valores en CLP<br />Consulta disponibilidad</p>
+            </div>
+          </div>
+
+        </div>
+        <a class="hero__scroll" href="#catalogo" aria-label="Continuar al catálogo">
+          <span>Desliza</span>
+          <i aria-hidden="true"></i>
+        </a>
+      </section>
+
+      <section class="catalog-section" id="catalogo" aria-labelledby="catalog-title">
+        <header class="catalog-heading shell">
+          <div data-reveal>
+            <p class="eyebrow">Catálogo</p>
+            <h2 id="catalog-title">Arreglos para<br /><em>acompañar.</em></h2>
+          </div>
+          <p data-reveal>
+            Diez alternativas seleccionadas. Todos los valores están expresados en pesos chilenos; las flores y tonalidades pueden variar según disponibilidad, manteniendo el estilo y valor de cada arreglo.
+          </p>
+        </header>
+
+        <div class="catalog shell">
+          {categoryOrder.map((category, categoryIndex) => {
+            const products = catalog.filter((product) => product.category === category);
+            return (
+              <details class="catalog-group" name="catalog-category" data-catalog-group>
+                <summary class="catalog-group__heading">
+                  <span>{String(categoryIndex + 1).padStart(2, '0')}</span>
+                  <h3 id={`category-${category}`}>{categoryLabels[category]}</h3>
+                  <span>{String(products.length).padStart(2, '0')} arreglos</span>
+                  <i class="catalog-group__toggle" aria-hidden="true"></i>
+                </summary>
+                <div class="catalog-group__content">
+                  <div class:list={['product-grid', products.length === 1 && 'product-grid--single']}>
+                    {products.map((product) => (
+                      <ProductCard product={product} index={catalog.indexOf(product)} />
+                    ))}
+                  </div>
+                </div>
+              </details>
+            );
+          })}
+        </div>
+
+      </section>
+
+      <section class="consultation" id="como-consultar" aria-labelledby="consultation-title">
+        <div class="consultation__botanical consultation__botanical--left" aria-hidden="true"></div>
+        <div class="consultation__botanical consultation__botanical--right" aria-hidden="true"></div>
+        <div class="consultation__inner shell">
+          <header class="consultation__heading" data-reveal>
+            <p class="eyebrow">Estamos para orientarte</p>
+            <h2 id="consultation-title">Consulta<br /><span class="consultation__en">en</span><em>tres pasos.</em></h2>
+          </header>
+          <ol class="steps">
+            <li data-reveal>
+              <span>01</span>
+              <h3>Elige una referencia</h3>
+              <p>Revisa el catálogo y guarda el nombre del arreglo.</p>
+            </li>
+            <li data-reveal>
+              <span>02</span>
+              <h3>Escríbenos</h3>
+              <p>Escríbenos por WhatsApp con la referencia elegida.</p>
+            </li>
+            <li data-reveal>
+              <span>03</span>
+              <h3>Confirma disponibilidad</h3>
+              <p>Confirmamos disponibilidad y coordinamos la preparación.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="closing" aria-labelledby="closing-title">
+        <div class="closing__inner shell" data-reveal>
+          <Logo class="closing__logo" />
+          <h2 id="closing-title">
+            Un gesto de <span class="closing__pink">cariño</span><br />
+            en el <span class="closing__green">momento indicado.</span>
+          </h2>
+          <p>Atención por WhatsApp</p>
+          <p class="closing__phone">+56 9 8751 0974</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer shell">
+      <p>© {new Date().getFullYear()} Floristería Conce</p>
+      <p>Catálogo de condolencias · Concepción, Chile</p>
+      <a href="#inicio">Volver arriba ↑</a>
+    </footer>
+
+    <WhatsAppButton />
+  </div>
+
+  <script>
+    import '../scripts/animations';
+  </script>
+</BaseLayout>

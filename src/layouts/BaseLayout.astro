@@ -1,0 +1,78 @@
+---
+import '@fontsource-variable/cormorant-garamond';
+import '@fontsource-variable/manrope';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  bodyClass?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  ogImage,
+  bodyClass = '',
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const socialImageURL = ogImage && Astro.site ? new URL(ogImage, Astro.site).href : undefined;
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Florist',
+  name: 'Floristería Conce',
+  telephone: '+56 9 8751 0974',
+  description,
+  priceRange: '$$',
+  areaServed: {
+    '@type': 'City',
+    name: 'Concepción',
+    containedInPlace: {
+      '@type': 'AdministrativeArea',
+      name: 'Región del Biobío, Chile',
+    },
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Concepción',
+    addressRegion: 'Biobío',
+    addressCountry: 'CL',
+  },
+  ...(canonicalURL && { url: canonicalURL }),
+};
+---
+
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
+    <meta name="theme-color" content="#f4f1e9" />
+    <meta name="color-scheme" content="light" />
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content="Floristería Conce" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {socialImageURL && <meta property="og:image" content={socialImageURL} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {socialImageURL && <meta name="twitter:image" content={socialImageURL} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {!noindex && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
+    <title>{title}</title>
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <slot />
+  </body>
+</html>

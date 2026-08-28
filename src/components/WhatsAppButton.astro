@@ -1,0 +1,20 @@
+---
+import whatsappIcon from '../assets/brand/whatsapp.svg';
+
+const message = encodeURIComponent('Hola, quisiera consultar por un arreglo de condolencias del catálogo.');
+const whatsappUrl = `https://wa.me/56987510974?text=${message}`;
+---
+
+<a
+  class="whatsapp-button"
+  href={whatsappUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Consultar el catálogo por WhatsApp"
+  data-whatsapp
+>
+  <span class="whatsapp-button__label" aria-hidden="true">Consultar por WhatsApp</span>
+  <span class="whatsapp-button__icon">
+    <img src={whatsappIcon.src} alt="" width="28" height="28" />
+  </span>
+</a>

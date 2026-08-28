@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/brand/floristeria-conce-transparent.png';
+
+interface Props {
+  class?: string;
+  label?: string;
+  decorative?: boolean;
+}
+
+const {
+  class: className = '',
+  label = 'Floristería Conce',
+  decorative = false,
+} = Astro.props;
+---
+
+<span
+  class:list={['brand-logo', className]}
+  aria-hidden={decorative ? 'true' : undefined}
+>
+  <Image
+    src={logo}
+    alt={decorative ? '' : label}
+    widths={[160, 240]}
+    sizes="160px"
+    loading="eager"
+    decoding="async"
+  />
+</span>
+
+<style>
+  .brand-logo {
+    display: inline-flex;
+    color: inherit;
+    line-height: 0;
+  }
+
+  .brand-logo :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>
