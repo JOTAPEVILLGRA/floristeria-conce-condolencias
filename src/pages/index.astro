@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Logo from '../components/Logo.astro';
 import ProductCard from '../components/ProductCard.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
-import { catalog, categoryLabels, categoryOrder } from '../data/catalog';
+import { catalog, categoryImages, categoryLabels, categoryOrder } from '../data/catalog';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import heroImage from '../assets/hero/condolence-hero-premium.png';
 import wordmark from '../assets/brand/letras-logo.png';
@@ -27,14 +27,16 @@ const description = 'Arreglos florales de condolencias en Concepción. Revisa nu
           decoding="async"
         />
       </a>
-      <nav class="site-nav" aria-label="Navegación principal">
+      <button class="site-header__menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false" aria-label="Abrir menú" data-menu-toggle>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+      <nav class="site-nav" id="site-navigation" aria-label="Navegación principal" data-menu>
         <a href="#catalogo">Catálogo</a>
-        <a href="#como-consultar">Cómo consultar</a>
+        <a href="#como-consultar">Pasos a seguir</a>
+        <a href="#ubicacion">Ubicación</a>
       </nav>
-      <a class="site-header__catalog-link" href="#catalogo">
-        Ver catálogo
-        <span aria-hidden="true">↓</span>
-      </a>
     </header>
 
     <main id="contenido">
@@ -72,10 +74,6 @@ const description = 'Arreglos florales de condolencias en Concepción. Revisa nu
           </div>
 
         </div>
-        <a class="hero__scroll" href="#catalogo" aria-label="Continuar al catálogo">
-          <span>Desliza</span>
-          <i aria-hidden="true"></i>
-        </a>
       </section>
 
       <section class="catalog-section" id="catalogo" aria-labelledby="catalog-title">
@@ -85,25 +83,37 @@ const description = 'Arreglos florales de condolencias en Concepción. Revisa nu
             <h2 id="catalog-title">Arreglos para<br /><em>acompañar.</em></h2>
           </div>
           <p data-reveal>
-            Diez alternativas seleccionadas. Todos los valores están expresados en pesos chilenos; las flores y tonalidades pueden variar según disponibilidad, manteniendo el estilo y valor de cada arreglo.
+            Diez alternativas seleccionadas. Las flores y tonalidades pueden variar según disponibilidad, manteniendo el estilo y valor de cada arreglo.
           </p>
         </header>
 
         <div class="catalog shell">
           {categoryOrder.map((category, categoryIndex) => {
             const products = catalog.filter((product) => product.category === category);
+            const categoryImage = categoryImages[category];
             return (
-              <details class="catalog-group" name="catalog-category" data-catalog-group>
+              <details class="catalog-group" data-catalog-group>
                 <summary class="catalog-group__heading">
                   <span>{String(categoryIndex + 1).padStart(2, '0')}</span>
                   <h3 id={`category-${category}`}>{categoryLabels[category]}</h3>
-                  <span>{String(products.length).padStart(2, '0')} arreglos</span>
-                  <i class="catalog-group__toggle" aria-hidden="true"></i>
+                  <span class="catalog-group__image" aria-hidden="true">
+                    <Image
+                      src={categoryImage}
+                      alt=""
+                      widths={[240, 400]}
+                      sizes="(max-width: 799px) 88px, 220px"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                  <span class="catalog-group__action" aria-hidden="true">
+                    <i class="catalog-group__toggle"></i>
+                  </span>
                 </summary>
                 <div class="catalog-group__content">
                   <div class:list={['product-grid', products.length === 1 && 'product-grid--single']}>
                     {products.map((product) => (
-                      <ProductCard product={product} index={catalog.indexOf(product)} />
+                      <ProductCard product={product} />
                     ))}
                   </div>
                 </div>
@@ -123,17 +133,17 @@ const description = 'Arreglos florales de condolencias en Concepción. Revisa nu
             <h2 id="consultation-title">Consulta<br /><span class="consultation__en">en</span><em>tres pasos.</em></h2>
           </header>
           <ol class="steps">
-            <li data-reveal>
+            <li>
               <span>01</span>
               <h3>Elige una referencia</h3>
               <p>Revisa el catálogo y guarda el nombre del arreglo.</p>
             </li>
-            <li data-reveal>
+            <li>
               <span>02</span>
               <h3>Escríbenos</h3>
               <p>Escríbenos por WhatsApp con la referencia elegida.</p>
             </li>
-            <li data-reveal>
+            <li>
               <span>03</span>
               <h3>Confirma disponibilidad</h3>
               <p>Confirmamos disponibilidad y coordinamos la preparación.</p>
@@ -142,15 +152,25 @@ const description = 'Arreglos florales de condolencias en Concepción. Revisa nu
         </div>
       </section>
 
-      <section class="closing" aria-labelledby="closing-title">
+      <section class="closing" id="ubicacion" aria-labelledby="closing-title">
         <div class="closing__inner shell" data-reveal>
-          <Logo class="closing__logo" />
-          <h2 id="closing-title">
-            Un gesto de <span class="closing__pink">cariño</span><br />
-            en el <span class="closing__green">momento indicado.</span>
-          </h2>
-          <p>Atención por WhatsApp</p>
-          <p class="closing__phone">+56 9 8751 0974</p>
+          <div class="closing__content">
+            <Logo class="closing__logo" />
+            <h2 id="closing-title">
+              Un gesto de <span class="closing__pink">cariño</span><br />
+              en el <span class="closing__green">momento indicado.</span>
+            </h2>
+            <p>Atención por WhatsApp</p>
+            <p class="closing__phone">+56 9 8751 0974</p>
+          </div>
+          <div class="closing__map">
+            <iframe
+              title="Ubicación de Floristería Conce"
+              src="https://www.google.com/maps?q=Caupolic%C3%A1n%20673%2C%20Local%20L1-A%2C%204030000%20Concepci%C3%B3n%2C%20B%C3%ADo%20B%C3%ADo%2C%20Chile&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </div>
       </section>
     </main>
@@ -165,6 +185,37 @@ const description = 'Arreglos florales de condolencias en Concepción. Revisa nu
   </div>
 
   <script>
+    const header = document.querySelector<HTMLElement>('.site-header');
+    const menuToggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+    const menu = document.querySelector<HTMLElement>('[data-menu]');
+
+    if (header && menuToggle && menu) {
+      const setMenuOpen = (isOpen: boolean) => {
+        header.classList.toggle('site-header--menu-open', isOpen);
+        document.body.classList.toggle('menu-is-open', isOpen);
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+      };
+
+      menuToggle.addEventListener('click', () => {
+        setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+      });
+
+      menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenuOpen(false));
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' || menuToggle.getAttribute('aria-expanded') !== 'true') return;
+        setMenuOpen(false);
+        menuToggle.focus();
+      });
+
+      window.matchMedia('(min-width: 800px)').addEventListener('change', (event) => {
+        if (event.matches) setMenuOpen(false);
+      });
+    }
+
     import '../scripts/animations';
   </script>
 </BaseLayout>

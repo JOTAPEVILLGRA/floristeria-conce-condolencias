@@ -10,6 +10,10 @@ import cubreUrnaPremium from '../assets/catalog/cubre-urna-premium.webp';
 import coronaFloral from '../assets/catalog/corona-floral.webp';
 import coronaFloralGold from '../assets/catalog/corona-floral-gold.webp';
 import coronaPremium from '../assets/catalog/corona-premium.webp';
+import categoryCanastillos from '../assets/catalog/category-canastillos.png';
+import categoryConjuntos from '../assets/catalog/category-conjuntos.png';
+import categoryCubreUrnas from '../assets/catalog/category-cubre-urnas.png';
+import categoryCoronas from '../assets/catalog/category-coronas.png';
 
 export const categoryOrder = ['canastillos', 'conjuntos', 'cubre-urnas', 'coronas'] as const;
 
@@ -30,6 +34,13 @@ export const categoryLabels: Record<CatalogCategory, string> = {
   conjuntos: 'Conjuntos florales',
   'cubre-urnas': 'Cubre urnas',
   coronas: 'Coronas',
+};
+
+export const categoryImages: Record<CatalogCategory, ImageMetadata> = {
+  canastillos: categoryCanastillos,
+  conjuntos: categoryConjuntos,
+  'cubre-urnas': categoryCubreUrnas,
+  coronas: categoryCoronas,
 };
 
 export const catalog: CatalogProduct[] = [

@@ -50,13 +50,16 @@ const initializeAnimations = () => {
           clipPath: 'inset(0 0 0 100%)',
           duration: 1.35,
           ease: 'power4.inOut',
-        }, '-=1.05')
-        .from('[data-whatsapp]', {
+        }, '-=1.05');
+
+      if (desktop) {
+        intro.from('[data-whatsapp]', {
           scale: 0.7,
           autoAlpha: 0,
           duration: 0.6,
           ease: 'back.out(1.8)',
         }, '-=0.35');
+      }
 
       gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((element) => {
         gsap.from(element, {
@@ -100,7 +103,7 @@ const initializeAnimations = () => {
       }
 
       const whatsapp = document.querySelector('[data-whatsapp]');
-      if (whatsapp) {
+      if (whatsapp && desktop) {
         gsap.to(whatsapp, {
           keyframes: [
             { scale: 1.06, duration: 0.25 },

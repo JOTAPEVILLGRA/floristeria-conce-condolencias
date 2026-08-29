@@ -5,10 +5,9 @@ import { categoryLabels, formatCLP } from '../data/catalog';
 
 interface Props {
   product: CatalogProduct;
-  index: number;
 }
 
-const { product, index } = Astro.props;
+const { product } = Astro.props;
 ---
 
 <article class="product-card" data-product-card>
@@ -22,7 +21,6 @@ const { product, index } = Astro.props;
       decoding="async"
       style={`object-position: ${product.objectPosition ?? '50% 50%'}`}
     />
-    <span class="product-card__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
   </div>
   <div class="product-card__body">
     <p class="product-card__category">{categoryLabels[product.category]}</p>
