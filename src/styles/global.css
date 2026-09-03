@@ -294,7 +294,7 @@ em {
   position: absolute;
   z-index: 1;
   inset: 0;
-  background: linear-gradient(90deg, rgba(244, 241, 233, 0.97) 0%, rgba(244, 241, 233, 0.91) 35%, rgba(244, 241, 233, 0.62) 51%, rgba(244, 241, 233, 0.17) 75%, rgba(244, 241, 233, 0.04) 100%);
+  background: linear-gradient(90deg, rgba(244, 241, 233, 0.93) 0%, rgba(244, 241, 233, 0.83) 35%, rgba(244, 241, 233, 0.49) 51%, rgba(244, 241, 233, 0.12) 75%, rgba(244, 241, 233, 0.02) 100%);
   content: '';
   pointer-events: none;
 }
@@ -788,19 +788,9 @@ em {
 
 .consultation {
   position: relative;
-  overflow: hidden;
-  padding-block: clamp(3.5rem, 5vw, 5rem);
-  background: var(--white);
+  padding: clamp(2rem, 3vw, 3rem) 0 clamp(3rem, 4vw, 4.5rem);
+  background: transparent;
   color: var(--ink);
-}
-
-.consultation::before {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 0, rgba(168, 185, 165, 0.2), transparent 42%),
-    linear-gradient(90deg, rgba(38, 59, 49, 0.06) 1px, transparent 1px) center / 25% 100%;
-  content: '';
 }
 
 .consultation__inner {
@@ -891,26 +881,6 @@ em {
 
 .steps li:is(:hover, :active) p {
   color: rgba(255, 255, 255, 0.76);
-}
-
-.consultation__botanical {
-  position: absolute;
-  border: 1px solid rgba(222, 194, 194, 0.13);
-  border-radius: 50%;
-}
-
-.consultation__botanical--left {
-  bottom: -22rem;
-  left: -19rem;
-  width: 39rem;
-  height: 39rem;
-}
-
-.consultation__botanical--right {
-  top: -16rem;
-  right: -12rem;
-  width: 31rem;
-  height: 31rem;
 }
 
 .closing {
@@ -1304,11 +1274,7 @@ em {
   }
 
   .consultation {
-    padding-block: 4rem;
-  }
-
-  .consultation::before {
-    display: none;
+    padding: 3rem 0 3.5rem;
   }
 
   .consultation__heading {
@@ -1328,24 +1294,25 @@ em {
 
   .steps {
     grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-top: 3rem;
+    gap: 0.75rem;
+    margin-top: 2.25rem;
   }
 
   .steps li,
   .steps li + li {
     min-height: 0;
-    padding: 1.5rem;
+    padding: 1.2rem;
     border: 1px solid rgba(38, 59, 49, 0.16);
   }
 
   .steps h3 {
-    margin-top: 1.1rem;
-    font-size: clamp(1.65rem, 7vw, 2.25rem);
+    margin-top: 0.75rem;
+    font-size: clamp(1.35rem, 6vw, 1.8rem);
+    line-height: 1.15;
   }
 
   .steps p {
-    margin-top: 0.85rem;
+    margin-top: 0.6rem;
     font-size: 0.76rem;
     line-height: 1.5;
   }

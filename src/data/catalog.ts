@@ -10,12 +10,15 @@ import cubreUrnaPremium from '../assets/catalog/cubre-urna-premium.webp';
 import coronaFloral from '../assets/catalog/corona-floral.webp';
 import coronaFloralGold from '../assets/catalog/corona-floral-gold.webp';
 import coronaPremium from '../assets/catalog/corona-premium.webp';
+import regaloCajaFloral from '../assets/catalog/regalo-caja-floral.png';
+import regaloCanastoFloral from '../assets/catalog/regalo-canasto-floral.png';
+import regaloJarronFloral from '../assets/catalog/regalo-jarron-floral.png';
 import categoryCanastillos from '../assets/catalog/category-canastillos.png';
 import categoryConjuntos from '../assets/catalog/category-conjuntos.png';
 import categoryCubreUrnas from '../assets/catalog/category-cubre-urnas.png';
 import categoryCoronas from '../assets/catalog/category-coronas.png';
 
-export const categoryOrder = ['canastillos', 'conjuntos', 'cubre-urnas', 'coronas'] as const;
+export const categoryOrder = ['canastillos', 'conjuntos', 'cubre-urnas', 'coronas', 'regalos'] as const;
 
 export type CatalogCategory = (typeof categoryOrder)[number];
 
@@ -34,6 +37,7 @@ export const categoryLabels: Record<CatalogCategory, string> = {
   conjuntos: 'Conjuntos florales',
   'cubre-urnas': 'Cubre urnas',
   coronas: 'Coronas',
+  regalos: 'Regalos',
 };
 
 export const categoryImages: Record<CatalogCategory, ImageMetadata> = {
@@ -41,6 +45,7 @@ export const categoryImages: Record<CatalogCategory, ImageMetadata> = {
   conjuntos: categoryConjuntos,
   'cubre-urnas': categoryCubreUrnas,
   coronas: categoryCoronas,
+  regalos: regaloCajaFloral,
 };
 
 export const catalog: CatalogProduct[] = [
@@ -132,6 +137,33 @@ export const catalog: CatalogProduct[] = [
     priceCLP: 370000,
     image: coronaPremium,
     alt: 'Corona Premium personalizada de flores blancas',
+    objectPosition: '50% 50%',
+  },
+  {
+    id: 'regalo-caja-floral',
+    name: 'Caja floral',
+    category: 'regalos',
+    priceCLP: 35000,
+    image: regaloCajaFloral,
+    alt: 'Caja de regalo marfil con rosas blancas, lisianthus y eucalipto',
+    objectPosition: '50% 50%',
+  },
+  {
+    id: 'regalo-canasto-floral',
+    name: 'Canasto floral',
+    category: 'regalos',
+    priceCLP: 45000,
+    image: regaloCanastoFloral,
+    alt: 'Canasto de fibra natural con hortensias y rosas blancas',
+    objectPosition: '50% 50%',
+  },
+  {
+    id: 'regalo-jarron-floral',
+    name: 'Jarrón floral',
+    category: 'regalos',
+    priceCLP: 55000,
+    image: regaloJarronFloral,
+    alt: 'Jarrón blanco con lirios, alstroemerias y eucalipto',
     objectPosition: '50% 50%',
   },
 ];
