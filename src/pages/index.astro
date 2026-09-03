@@ -10,6 +10,7 @@ import wordmark from '../assets/brand/letras-logo.png';
 
 const title = 'Catálogo de condolencias | Floristería Conce';
 const description = 'Arreglos florales de condolencias y regalos en Concepción. Revisa nuestro catálogo de canastillos, cubre urnas, conjuntos y coronas florales.';
+const featuredWorks = catalog.slice(0, 6);
 ---
 
 <BaseLayout title={title} description={description} ogImage={heroImage.src}>
@@ -76,15 +77,46 @@ const description = 'Arreglos florales de condolencias y regalos en Concepción.
         </div>
       </section>
 
+      <section class="work-marquee" aria-label="Trabajos florales seleccionados">
+        <div class="work-marquee__viewport">
+          <div class="work-marquee__track">
+            <div class="work-marquee__group">
+              {featuredWorks.map((work) => (
+                <figure class="work-marquee__card">
+                  <Image
+                    src={work.image}
+                    alt={work.alt}
+                    widths={[320, 480]}
+                    sizes="(max-width: 799px) 10.5rem, 15.5rem"
+                    loading="lazy"
+                    decoding="async"
+                    style={`object-position: ${work.objectPosition ?? '50% 50%'}`}
+                  />
+                </figure>
+              ))}
+            </div>
+            <div class="work-marquee__group" aria-hidden="true">
+              {featuredWorks.map((work) => (
+                <figure class="work-marquee__card">
+                  <Image
+                    src={work.image}
+                    alt=""
+                    widths={[320, 480]}
+                    sizes="(max-width: 799px) 10.5rem, 15.5rem"
+                    loading="lazy"
+                    decoding="async"
+                    style={`object-position: ${work.objectPosition ?? '50% 50%'}`}
+                  />
+                </figure>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="catalog-section" id="catalogo" aria-labelledby="catalog-title">
         <header class="catalog-heading shell">
-          <div data-reveal>
-            <p class="eyebrow">Catálogo</p>
-            <h2 id="catalog-title">Revisa nuestro<br /><em>catálogo.</em></h2>
-          </div>
-          <p data-reveal>
-            Trece alternativas seleccionadas. Las flores y tonalidades pueden variar según disponibilidad, manteniendo el estilo y valor de cada arreglo.
-          </p>
+          <h2 id="catalog-title" data-reveal>Revisa nuestro <em>catálogo.</em></h2>
         </header>
 
         <div class="catalog shell">
