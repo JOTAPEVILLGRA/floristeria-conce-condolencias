@@ -9,8 +9,17 @@ import heroImage from '../assets/hero/condolence-hero-premium.png';
 import wordmark from '../assets/brand/letras-logo.png';
 
 const title = 'Catálogo de condolencias | Floristería Conce';
-const description = 'Arreglos florales de condolencias y regalos en Concepción. Revisa nuestro catálogo de canastillos, cubre urnas, conjuntos y coronas florales.';
-const featuredWorks = catalog.slice(0, 6);
+const description = 'Arreglos florales, ramos y regalos en Concepción. Revisa canastillos, conjuntos, cubre urnas, coronas, atriles y pies de urna.';
+const featuredProductIds = new Set<string>([
+  'canastillo-gold',
+  'conjunto-floral-silver',
+  'cubre-urna-gold',
+  'corona-floral-silver',
+  'duo-atriles-premium',
+  'regalo-canasto-floral',
+  'ramo-floral-variedad',
+]);
+const featuredWorks = catalog.filter(({ id }) => featuredProductIds.has(id));
 ---
 
 <BaseLayout title={title} description={description} ogImage={heroImage.src}>
@@ -66,10 +75,7 @@ const featuredWorks = catalog.slice(0, 6);
               Una selección de arreglos florales para expresar cercanía, cariño y presencia en momentos delicados.
             </p>
             <div class="hero__actions" data-hero-item>
-              <a class="button button--dark" href="#catalogo">
-                Explorar arreglos
-                <span aria-hidden="true">↘</span>
-              </a>
+              <a class="button button--dark" href="#catalogo">Explorar arreglos</a>
               <p>Consulta disponibilidad</p>
             </div>
           </div>
