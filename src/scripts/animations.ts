@@ -142,8 +142,6 @@ const initializeAnimations = () => {
           clearProps: 'opacity,visibility,transform',
         });
       }
-
-      window.requestAnimationFrame(refresh);
     });
   });
 

@@ -26,9 +26,6 @@ import pieUrnaSilver from '../assets/catalog/pie-urna-silver.webp';
 import pieUrnaGold from '../assets/catalog/pie-urna-gold.webp';
 import atrilFloralBronce from '../assets/catalog/atril-floral-bronce.webp';
 import duoAtrilesPremium from '../assets/catalog/duo-atriles-premium.webp';
-import regaloCajaFloral from '../assets/catalog/regalo-caja-floral.webp';
-import regaloCanastoFloral from '../assets/catalog/regalo-canasto-floral.webp';
-import regaloJarronFloral from '../assets/catalog/regalo-jarron-floral.webp';
 import arregloRegaloBase from '../assets/catalog/arreglo-regalo-base.webp';
 import ramoSoloRosa from '../assets/catalog/ramo-solo-rosa.webp';
 import ramo6Rosas from '../assets/catalog/ramo-6-rosas.webp';
@@ -52,7 +49,6 @@ export const categoryOrder = [
   'coronas',
   'atriles-pies-urna',
   'regalos',
-  'ramos',
 ] as const;
 
 export type CatalogCategory = (typeof categoryOrder)[number];
@@ -72,9 +68,8 @@ export const categoryLabels: Record<CatalogCategory, string> = {
   conjuntos: 'Conjuntos florales',
   'cubre-urnas': 'Cubre urnas',
   coronas: 'Coronas',
-  'atriles-pies-urna': 'Atriles y pies de urna',
-  regalos: 'Regalos',
-  ramos: 'Ramos',
+  'atriles-pies-urna': 'Pies de urna',
+  regalos: 'Ramos para regalar',
 };
 
 export const categoryImages: Record<CatalogCategory, ImageMetadata> = {
@@ -82,9 +77,8 @@ export const categoryImages: Record<CatalogCategory, ImageMetadata> = {
   conjuntos: categoryConjuntos,
   'cubre-urnas': categoryCubreUrnas,
   coronas: categoryCoronas,
-  'atriles-pies-urna': duoAtrilesPremium,
-  regalos: regaloCajaFloral,
-  ramos: ramoFloralVariedad,
+  'atriles-pies-urna': pieUrnaGold,
+  regalos: ramoFloralVariedad,
 };
 
 export const catalog: CatalogProduct[] = [
@@ -307,7 +301,7 @@ export const catalog: CatalogProduct[] = [
   {
     id: 'atril-floral-bronce',
     name: 'Atril floral Bronce',
-    category: 'atriles-pies-urna',
+    category: 'coronas',
     priceCLP: 130000,
     image: atrilFloralBronce,
     alt: 'Atril floral Bronce de flores blancas con cinta personalizada',
@@ -316,38 +310,11 @@ export const catalog: CatalogProduct[] = [
   {
     id: 'duo-atriles-premium',
     name: 'Dúo de atriles florales Premium',
-    category: 'atriles-pies-urna',
+    category: 'coronas',
     priceCLP: 460000,
     image: duoAtrilesPremium,
     alt: 'Dúo de atriles florales Premium con flores blancas',
     objectPosition: '50% 47%',
-  },
-  {
-    id: 'regalo-caja-floral',
-    name: 'Caja floral',
-    category: 'regalos',
-    priceCLP: 35000,
-    image: regaloCajaFloral,
-    alt: 'Caja de regalo marfil con rosas blancas, lisianthus y eucalipto',
-    objectPosition: '50% 50%',
-  },
-  {
-    id: 'regalo-canasto-floral',
-    name: 'Canasto floral',
-    category: 'regalos',
-    priceCLP: 45000,
-    image: regaloCanastoFloral,
-    alt: 'Canasto de fibra natural con hortensias y rosas blancas',
-    objectPosition: '50% 50%',
-  },
-  {
-    id: 'regalo-jarron-floral',
-    name: 'Jarrón floral',
-    category: 'regalos',
-    priceCLP: 55000,
-    image: regaloJarronFloral,
-    alt: 'Jarrón blanco con lirios, alstroemerias y eucalipto',
-    objectPosition: '50% 50%',
   },
   {
     id: 'arreglo-regalo-base',
@@ -361,7 +328,7 @@ export const catalog: CatalogProduct[] = [
   {
     id: 'ramo-solo-rosa',
     name: 'Ramo solo rosa',
-    category: 'ramos',
+    category: 'regalos',
     priceCLP: 20000,
     image: ramoSoloRosa,
     alt: 'Ramo con una rosa rosada, crisantemos violetas y gypsophila',
@@ -370,7 +337,7 @@ export const catalog: CatalogProduct[] = [
   {
     id: 'ramo-6-rosas',
     name: 'Ramo de 6 rosas',
-    category: 'ramos',
+    category: 'regalos',
     priceCLP: 22000,
     image: ramo6Rosas,
     alt: 'Ramo de seis rosas rojas con gypsophila y follaje verde',
@@ -379,7 +346,7 @@ export const catalog: CatalogProduct[] = [
   {
     id: 'ramo-primaveral',
     name: 'Ramo primaveral',
-    category: 'ramos',
+    category: 'regalos',
     priceCLP: 22000,
     image: ramoPrimaveral,
     alt: 'Ramo primaveral con lirios, gerberas y flores amarillas',
@@ -388,7 +355,7 @@ export const catalog: CatalogProduct[] = [
   {
     id: 'ramo-rosas-bicolor',
     name: 'Ramo de rosas bicolor',
-    category: 'ramos',
+    category: 'regalos',
     priceCLP: 22000,
     image: ramoRosasBicolor,
     alt: 'Ramo de rosas bicolor naranjas y amarillas con gypsophila',
@@ -397,7 +364,7 @@ export const catalog: CatalogProduct[] = [
   {
     id: 'ramo-rosas-rosadas',
     name: 'Ramo de rosas rosadas',
-    category: 'ramos',
+    category: 'regalos',
     priceCLP: 22000,
     image: ramoRosasRosadas,
     alt: 'Ramo de rosas rosadas con gypsophila y envoltorio rosado',
@@ -406,7 +373,7 @@ export const catalog: CatalogProduct[] = [
   {
     id: 'ramo-8-rosas-rojas',
     name: 'Ramo de 8 rosas rojas',
-    category: 'ramos',
+    category: 'regalos',
     priceCLP: 30000,
     image: ramo8RosasRojas,
     alt: 'Ramo de ocho rosas rojas con gypsophila y follaje verde',
@@ -415,7 +382,7 @@ export const catalog: CatalogProduct[] = [
   {
     id: 'ramo-clasico-m',
     name: 'Ramo clásico M',
-    category: 'ramos',
+    category: 'regalos',
     priceCLP: 33000,
     image: ramoClasicoM,
     alt: 'Ramo clásico M de rosas rosadas, lirios y gypsophila',
@@ -424,7 +391,7 @@ export const catalog: CatalogProduct[] = [
   {
     id: 'ramo-rosas-gold',
     name: 'Ramo de rosas Gold',
-    category: 'ramos',
+    category: 'regalos',
     priceCLP: 33000,
     image: ramoRosasGold,
     alt: 'Ramo Gold de rosas rojas con gypsophila y envoltorio rojo',
@@ -433,7 +400,7 @@ export const catalog: CatalogProduct[] = [
   {
     id: 'ramo-9-rosas',
     name: 'Ramo de 9 rosas',
-    category: 'ramos',
+    category: 'regalos',
     priceCLP: 34000,
     image: ramo9Rosas,
     alt: 'Ramo de nueve rosas rosadas con gypsophila y envoltorio rosado',
@@ -442,7 +409,7 @@ export const catalog: CatalogProduct[] = [
   {
     id: 'ramo-floral-variedad',
     name: 'Ramo floral variedad',
-    category: 'ramos',
+    category: 'regalos',
     priceCLP: 40000,
     image: ramoFloralVariedad,
     alt: 'Ramo floral variado con rosas, crisantemos y flores violetas',
