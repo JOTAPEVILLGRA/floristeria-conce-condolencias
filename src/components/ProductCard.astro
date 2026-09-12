@@ -11,22 +11,24 @@ const { product } = Astro.props;
 ---
 
 <article class="product-card" data-product-card>
-  <div class="product-card__media">
-    <Image
-      src={product.image}
-      alt={product.alt}
-      widths={[360, 560, 760]}
-      sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
-      loading="lazy"
-      decoding="async"
-      style={`object-position: ${product.objectPosition ?? '50% 50%'}`}
-    />
-  </div>
-  <div class="product-card__body">
-    <p class="product-card__category">{categoryLabels[product.category]}</p>
-    <div class="product-card__details">
-      <h3>{product.name}</h3>
-      <p class="product-card__price">{formatCLP(product.priceCLP)}</p>
+  <button class="product-card__trigger" type="button" aria-haspopup="dialog">
+    <div class="product-card__media">
+      <Image
+        src={product.image}
+        alt={product.alt}
+        widths={[360, 560, 760]}
+        sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
+        loading="lazy"
+        decoding="async"
+        style={`object-position: ${product.objectPosition ?? '50% 50%'}`}
+      />
     </div>
-  </div>
+    <div class="product-card__body">
+      <p class="product-card__category">{categoryLabels[product.category]}</p>
+      <div class="product-card__details">
+        <h3>{product.name}</h3>
+        <p class="product-card__price">{formatCLP(product.priceCLP)}</p>
+      </div>
+    </div>
+  </button>
 </article>

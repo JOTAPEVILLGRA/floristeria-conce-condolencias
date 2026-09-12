@@ -122,6 +122,7 @@ const featuredWorks = catalog.filter(({ id }) => featuredProductIds.has(id));
       <section class="catalog-section" id="catalogo" aria-labelledby="catalog-title">
         <header class="catalog-heading shell">
           <h2 id="catalog-title" data-reveal>Revisa nuestro <em>catálogo.</em></h2>
+          <p class="catalog-heading__prompt">Presiona para desplegar</p>
         </header>
 
         <div class="catalog shell">
@@ -159,6 +160,15 @@ const featuredWorks = catalog.filter(({ id }) => featuredProductIds.has(id));
           })}
         </div>
 
+        <dialog class="product-modal" aria-labelledby="product-modal-title" data-product-modal>
+          <button class="product-modal__close" type="button" aria-label="Cerrar detalle" data-product-modal-close>×</button>
+          <img class="product-modal__image" src={catalog[0].image.src} alt="" data-product-modal-image />
+          <div class="product-modal__body">
+            <p>Arreglo floral</p>
+            <h3 id="product-modal-title" data-product-modal-title></h3>
+            <strong data-product-modal-price></strong>
+          </div>
+        </dialog>
       </section>
 
       <section class="consultation" id="como-consultar" aria-labelledby="consultation-title">
@@ -249,6 +259,31 @@ const featuredWorks = catalog.filter(({ id }) => featuredProductIds.has(id));
         if (event.matches) setMenuOpen(false);
       });
     }
+
+    const productModal = document.querySelector<HTMLDialogElement>('[data-product-modal]');
+    const modalImage = document.querySelector<HTMLImageElement>('[data-product-modal-image]');
+    const modalTitle = document.querySelector<HTMLElement>('[data-product-modal-title]');
+    const modalPrice = document.querySelector<HTMLElement>('[data-product-modal-price]');
+
+    document.querySelectorAll<HTMLElement>('[data-product-card]').forEach((card) => {
+      card.addEventListener('click', () => {
+        const image = card.querySelector<HTMLImageElement>('img');
+        const title = card.querySelector<HTMLElement>('h3');
+        const price = card.querySelector<HTMLElement>('.product-card__price');
+        if (!productModal || !modalImage || !modalTitle || !modalPrice || !image || !title || !price) return;
+
+        modalImage.src = image.currentSrc || image.src;
+        modalImage.alt = image.alt;
+        modalTitle.textContent = title.textContent;
+        modalPrice.textContent = price.textContent;
+        productModal.showModal();
+      });
+    });
+
+    productModal?.addEventListener('click', (event) => {
+      if (event.target === productModal) productModal.close();
+    });
+    document.querySelector<HTMLButtonElement>('[data-product-modal-close]')?.addEventListener('click', () => productModal?.close());
 
     import '../scripts/animations';
   </script>
