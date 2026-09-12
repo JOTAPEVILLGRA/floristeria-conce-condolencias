@@ -9,7 +9,7 @@ import canastilloGold from '../assets/catalog/canastillo-gold.webp';
 import conjuntoFloral from '../assets/catalog/conjunto-floral.webp';
 import conjuntoFloralM from '../assets/catalog/conjunto-floral-m.webp';
 import conjuntoFloralBronce from '../assets/catalog/conjunto-floral-bronce.webp';
-import conjuntoFloralSilver from '../assets/catalog/conjunto-floral-silver.webp';
+import conjuntoFloralSilver from '../assets/catalog/conjunto-floral-silver.png';
 import conjuntoFloralGold from '../assets/catalog/conjunto-floral-gold.webp';
 import cubreUrnaBronce from '../assets/catalog/cubre-urna-bronce.webp';
 import cubreUrnaSilver from '../assets/catalog/cubre-urna-silver.webp';
@@ -61,6 +61,7 @@ export interface CatalogProduct {
   image: ImageMetadata;
   alt: string;
   objectPosition?: string;
+  imageFit?: 'cover' | 'contain';
 }
 
 export const categoryLabels: Record<CatalogCategory, string> = {
@@ -153,6 +154,7 @@ export const catalog: CatalogProduct[] = [
     image: conjuntoFloralM,
     alt: 'Conjunto floral M de dos arreglos blancos sobre atriles',
     objectPosition: '50% 50%',
+    imageFit: 'contain',
   },
   {
     id: 'conjunto-floral-bronce',

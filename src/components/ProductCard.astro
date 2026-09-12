@@ -10,7 +10,7 @@ interface Props {
 const { product } = Astro.props;
 ---
 
-<article class="product-card" data-product-card>
+<article class="product-card" data-product-card data-product-orientation={product.image.width > product.image.height ? 'landscape' : 'portrait'}>
   <button class="product-card__trigger" type="button" aria-haspopup="dialog">
     <div class="product-card__media">
       <Image
@@ -20,7 +20,7 @@ const { product } = Astro.props;
         sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw"
         loading="lazy"
         decoding="async"
-        style={`object-position: ${product.objectPosition ?? '50% 50%'}`}
+      style={`object-fit: ${product.imageFit ?? 'cover'}; object-position: ${product.objectPosition ?? '50% 50%'}`}
       />
     </div>
     <div class="product-card__body">

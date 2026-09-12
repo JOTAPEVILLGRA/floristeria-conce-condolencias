@@ -276,6 +276,7 @@ const featuredWorks = catalog.filter(({ id }) => featuredProductIds.has(id));
         modalImage.alt = image.alt;
         modalTitle.textContent = title.textContent;
         modalPrice.textContent = price.textContent;
+        productModal.classList.toggle('product-modal--landscape', card.dataset.productOrientation === 'landscape');
         productModal.showModal();
       });
     });

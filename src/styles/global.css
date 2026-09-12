@@ -977,6 +977,16 @@ em {
   cursor: pointer;
 }
 
+.product-modal--landscape {
+  width: min(92vw, 52rem);
+}
+
+.product-modal--landscape .product-modal__image {
+  height: min(60svh, 36rem);
+  background: var(--forest-deep);
+  object-fit: contain;
+}
+
 .product-modal {
   border: 2px solid var(--forest);
   border-radius: 1.25rem;
@@ -1494,6 +1504,10 @@ em {
 
   .product-modal__image {
     height: min(54svh, 30rem);
+  }
+
+  .product-modal--landscape .product-modal__image {
+    height: auto;
   }
 
   .consultation {
