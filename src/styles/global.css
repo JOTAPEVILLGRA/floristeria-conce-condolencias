@@ -851,6 +851,10 @@ em {
   background: var(--sage-pale);
 }
 
+.product-card[data-product-category='cubre-urnas'] .product-card__media {
+  aspect-ratio: 1.05;
+}
+
 .product-card__media::after {
   position: absolute;
   inset: 0;

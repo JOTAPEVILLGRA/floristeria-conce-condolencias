@@ -173,6 +173,7 @@ export const catalog: CatalogProduct[] = [
     image: conjuntoFloralSilver,
     alt: 'Conjunto floral Silver de cuatro arreglos blancos coordinados',
     objectPosition: '50% 50%',
+    imageFit: 'contain',
   },
   {
     id: 'conjunto-floral-gold',
@@ -190,7 +191,7 @@ export const catalog: CatalogProduct[] = [
     priceCLP: 30000,
     image: cubreUrnaBronce,
     alt: 'Cubre urna Bronce con flores blancas y follaje verde',
-    objectPosition: '50% 50%',
+    objectPosition: '38% 50%',
   },
   {
     id: 'cubre-urna-silver',

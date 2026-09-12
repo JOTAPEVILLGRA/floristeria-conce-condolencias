@@ -10,7 +10,7 @@ interface Props {
 const { product } = Astro.props;
 ---
 
-<article class="product-card" data-product-card data-product-orientation={product.image.width > product.image.height ? 'landscape' : 'portrait'}>
+<article class="product-card" data-product-card data-product-category={product.category} data-product-orientation={product.image.width > product.image.height ? 'landscape' : 'portrait'}>
   <button class="product-card__trigger" type="button" aria-haspopup="dialog">
     <div class="product-card__media">
       <Image
